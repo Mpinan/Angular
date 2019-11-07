@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="myApp.js"></script>
+    <script src="controller.js"></script>
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <h1>Write your name</h1>
+
+        <p>Name: <input type="text" ng-model="firstName"></p>
+        <p>Your wrote {{ firstName }}</p>
+
+        <h1>Multiply a number</h1>
+        Quantity: <input type="text" ng-model="quantity">
+        Price: <input type="text" ng-model="price">
+        <p><b>Total in dollar:</b> {{quantity * price}}</p>
+
+        <li ng-repeat="name in names">
+            {{ name }}
+        </li>
+        <br>
+
+        <form ng-app="" name="myForm">
+            Email:
+            <input type="email" name="myAddress" ng-model="text">
+            <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+        </form>
+        <p>Edit the e-mail address, and try to change the status.</p>
+        <h1>Status</h1>
+        <p>Valid: {{myForm.myAddress.$valid}} (if true, the value meets all criteria).</p>
+        <p>Dirty: {{myForm.myAddress.$dirty}} (if true, the value has been changed).</p>
+        <p>Touched: {{myForm.myAddress.$touched}} (if true, the field has been in focus).</p>
+        <p>Error: {{myForm.myAddress.$error}} (if true, will show when there is an error).</p>
+        <br>
+        <submit-directive></submit-directive>
+
+    </div>
+
+
+</body>
+
+</html>
