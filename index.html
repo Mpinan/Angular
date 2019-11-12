@@ -6,28 +6,32 @@
     <script src="myApp.js"></script>
     <script src="controller.js"></script>
     <style>
-            input.ng-empty {
-                background-color: lightblue;
-            }
+        input.ng-empty {
+            background-color: lightblue;
+        }
     </style>
 </head>
 
-<body>
+<body ng-app="myApp" >
 
-    <div ng-app="myApp" ng-controller="myCtrl">
+    <div ng-controller="myCtrl">
 
         <h1>Write your name</h1>
 
         <p>Name: <input type="text" ng-model="firstName"></p>
-        <p>Your wrote {{ firstName }}</p>
+        <p>Surname: <input type="text" ng-model="surname"></p>
+
+        <p>Your wrote {{ fullName() }}</p>
 
         <h1>Multiply a number</h1>
         Quantity: <input type="text" ng-model="quantity">
         Price: <input type="text" ng-model="price">
-        <p><b>Total in dollar:</b> {{quantity * price}}</p>
-
-        <li ng-repeat="name in names">
-            {{ name }}
+        <p><b>Total in dollar:</b> {{quantity * price | currency: '€' }}</p>
+        <h1>Find a name</h1>
+        <p><input type="text" ng-model="find_name"></p>
+        <li ng-repeat="x in names | orderBy:'country' | filter: find_name ">
+            <!-- This filter won't work inside this kind of expression -->
+            {{ x.name + ", " + x.country }}
         </li>
         <br>
 
@@ -44,9 +48,9 @@
         <p>Error: {{myForm.myAddress.$error}} (if true, will show when there is an error).</p>
         <br>
         <submit-directive></submit-directive>
-
+        <h1>{{ test | lowercase }}</h1>
     </div>
-
+<h1>{{ test | uppercase }}</h1>
 
 </body>
 
