@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="myApp.js"></script>
     <script src="controller.js"></script>
+    <script src="filters.js"></script>
     <style>
         input.ng-empty {
             background-color: lightblue;
@@ -12,7 +13,8 @@
     </style>
 </head>
 
-<body ng-app="myApp" >
+<body ng-app="myApp">
+    <h1>{{ theTime }}</h1>
 
     <div ng-controller="myCtrl">
 
@@ -26,22 +28,33 @@
         <h1>Multiply a number</h1>
         Quantity: <input type="text" ng-model="quantity">
         Price: <input type="text" ng-model="price">
-        <p><b>Total in dollar:</b> {{quantity * price | currency: '€' }}</p>
-        <h1>Find a name</h1>
-        <p><input type="text" ng-model="find_name"></p>
-        <li ng-repeat="x in names | orderBy:'country' | filter: find_name ">
-            <!-- This filter won't work inside this kind of expression -->
-            {{ x.name + ", " + x.country }}
-        </li>
+        <p><b>Total in dollar:</b> {{ quantity * price | currency: '€' }}</p>
+
+        <p>
+            <h1>Find a name in the table</h1>
+            <input type="text" ng-model="find_name">
+        </p>
+
+        <table border="1" width="100%">
+            <tr>
+                <th ng-click="orderByMe('name')">Name</th>
+                <th ng-click="orderByMe('country')">Country</th>
+            </tr>
+            <tr ng-repeat="x in names | orderBy:myOrderBy | filter: find_name  ">
+                <td>{{ x.name | myFormat }}</td>
+                <td>{{ x.country | myFormat }}</td>
+            </tr>
+        </table>
         <br>
 
+
+        <h1>Status</h1>
+        <p>Edit the e-mail address, and try to change the status.</p>
         <form ng-app="" name="myForm">
             Email:
             <input type="email" name="myAddress" ng-model="text">
             <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
         </form>
-        <p>Edit the e-mail address, and try to change the status.</p>
-        <h1>Status</h1>
         <p>Valid: {{myForm.myAddress.$valid}} (if true, the value meets all criteria).</p>
         <p>Dirty: {{myForm.myAddress.$dirty}} (if true, the value has been changed).</p>
         <p>Touched: {{myForm.myAddress.$touched}} (if true, the field has been in focus).</p>
@@ -50,7 +63,7 @@
         <submit-directive></submit-directive>
         <h1>{{ test | lowercase }}</h1>
     </div>
-<h1>{{ test | uppercase }}</h1>
+    <h1>{{ test | uppercase }}</h1>
 
 </body>
 
