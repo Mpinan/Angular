@@ -1,4 +1,4 @@
-app.controller("myCtrl", function ($scope) {
+app.controller("myCtrl", function ($scope, $http) {
 
     $scope.firstName = "";
     $scope.surname = "";
@@ -25,7 +25,23 @@ app.controller("myCtrl", function ($scope) {
         $scope.myOrderBy = x;
     }
 
+    $http({
+        method: 'GET',
+        url: 'https://newsapi.org/v2/everything?q=bitcoin&from=2019-10-13&sortBy=publishedAt&apiKey=9e6a6f4b75ea43608b75773bc958835e',
+
+    }).then(function success(response) {
+        // $scope.photo = response.data.articles[0].urlToImage
+        let random = response.data.articles[Math.floor(Math.random() * 10)]
+        $scope.newsTitle = random.title;
+        $scope.news =  random.urlToImage;
+        // [Math.floor(Math.random() * 10)].title
+        
+
+        console.log(random);
+        // console.log($scope.photo);
+    });
 });
+
 
 
 app.directive('submitDirective', function () {
