@@ -31,13 +31,14 @@ app.controller("myCtrl", function ($scope, $http) {
 
     }).then(function success(response) {
         // $scope.photo = response.data.articles[0].urlToImage
-        let random = response.data.articles[Math.floor(Math.random() * 10)]
-        $scope.newsTitle = random.title;
-        $scope.news =  random.urlToImage;
+        $scope.selected = response.data.articles
+        // let random = response.data.articles[Math.floor(Math.random() * 10)]
+        // $scope.newsTitle = random.title;
+        // $scope.news =  random.urlToImage;
         // [Math.floor(Math.random() * 10)].title
         
 
-        console.log(random);
+        console.log(response.data.articles);
         // console.log($scope.photo);
     });
 });
