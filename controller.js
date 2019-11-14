@@ -27,7 +27,7 @@ app.controller("myCtrl", function ($scope, $http) {
 
     $http({
         method: 'GET',
-        url: 'https://newsapi.org/v2/everything?q=bitcoin&from=2019-10-13&sortBy=publishedAt&apiKey=9e6a6f4b75ea43608b75773bc958835e',
+        url: 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9e6a6f4b75ea43608b75773bc958835e',
 
     }).then(function success(response) {
         // $scope.photo = response.data.articles[0].urlToImage
