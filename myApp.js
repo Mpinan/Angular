@@ -11,7 +11,7 @@ app.run(function ($rootScope, $interval, $timeout, $location) {
     $rootScope.myHeader = "Hello Amigo!";
 
     $timeout(function () {
-        $rootScope.myHeader = "How are you today?";
+        $rootScope.myHeader = "How are you doing today?";
     }, 4000);
 
 })
